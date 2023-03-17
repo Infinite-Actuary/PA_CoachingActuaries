@@ -1,0 +1,56 @@
+---
+title: "1.2.2_Misc_Manipulations"
+output: html_document
+date: "2023-02-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Three Manipulations
+
+## Counting elements
+
+```{r}
+# number of elements greater than 5
+sum(1:8 > 5)
+
+# T -> 1, F -> 0
+# we can perform numeric calculations on logical vectors
+```
+
+```{r}
+# how many iris have petal length < 2?
+sum(iris$Petal.Length < 2)
+```
+
+## Matching
+
+```{r}
+c(1, 2, 3, 4, 5, 6) %in% c(1, 3, 5) # order of the %in% doesn't matter
+```
+
+```{r}
+# how many iris have petal length exactly 1, 2, 3, 4, 5 or 6? (i.e. integer petal lengths)
+sum(iris$Petal.Length %in% 1:6)
+iris[iris$Petal.Length %in% 1:6, ]
+```
+
+## Paste
+
+```{r}
+new.iris <- iris
+new.iris$odd_even <- c("O", "E")
+
+# merging character objects
+paste("a", "b", "c") # "a b c"
+paste("a", "b", "c", sep = ",") # "a,b,c"
+paste0("a", "b", "c") # "abc"
+
+# for vectors use collapse
+paste(1:3, collapse = "+") # "1+2+3"
+
+paste(new.iris$Species, new.iris$odd_even, sep = "-")
+```
+

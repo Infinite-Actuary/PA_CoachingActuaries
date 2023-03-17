@@ -1,0 +1,74 @@
+---
+title: "1.1.2_Logical_Vectors"
+output: html_document
+date: "2023-02-22"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Logical Vectors
+
+```{r}
+v <- c(1, 4, 6, 3, 2, 6, 4)
+v < 4
+v > 6
+```
+
+Logic symbols:
+* greater than >
+* less than <
+* at least >=
+* at most <=
+* equals ==
+* not equal !=
+* union |
+* intersection &
+* complement !
+
+'=' vs '=='
+```{r}
+name = "carl" # equal assignment operator
+name == "kyle"
+```
+
+Grabbing using a logical vector (usually of matching length)
+```{r}
+# grab the 4th element
+v[4]
+v[c(F, F, F, T, F, F, F)]
+
+# grab values not equal to 6
+v != 6
+v[v != 6]
+
+```
+
+```{r}
+d <- data.frame(Name = c("Carl", "Rae"), Age = c(36, 35), Job = c("Actuary", "Analyst"))
+
+# get name of people with age = 35
+d[d$Age == 35, 1]
+d[d$Age == 35, ]$Name
+```
+
+Grabbing with logical vector that has shorter length than the vector being indexed
+```{r}
+v
+# grab every other element
+v[c(T, F)] # logical vector gets recycled until lengths match
+v[c(T, F, T, F, T, F)]
+```
+
+Recycling vectors
+```{r}
+1:4 + 4 # addition occurs element by element
+1:4 + c(4)
+
+1:4 + 4:1
+
+1:4 * c(0, 10)
+```
+
+

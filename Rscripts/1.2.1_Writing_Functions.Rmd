@@ -1,0 +1,38 @@
+---
+title: "1.2.1_Writing_Functions"
+output: html_document
+date: "2023-02-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Writing Functions
+
+```{r}
+func <- function(x, y) {
+  x^2 - log(y)
+}
+
+func(3, 5)
+func(x = 3, y = 5)
+func(y = 5, x = 3)
+
+# x and y can also be vectors
+func(x = 3:5, y = 10:12)
+
+# same as
+c(func(3, 10), func(4, 11), func(5, 12))
+```
+
+```{r}
+mean_variance <- function(vector) {
+  m <- mean(vector)
+  v <- var(vector)
+  return(c(m, v))
+}
+
+mean_variance(3:5)
+mean_variance(10:12)
+```

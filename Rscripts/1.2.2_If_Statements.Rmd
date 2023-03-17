@@ -1,0 +1,48 @@
+---
+title: "1.2.2_If_Statements"
+output: html_document
+date: "2023-02-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# If statements
+
+```{r}
+is_x_five <- function(x) {
+  if (x == 5) {
+    print("x is 5")
+  } else {
+    print("x is not 5")
+  }
+}
+
+is_x_five(4)
+is_x_five(5)
+is_x_five("5")
+is_x_five("10 / 2")
+```
+
+
+```{r}
+fourth_root <- function(x) {
+  if (x >= 0) { # expects length(x) == 1
+    return(x^(1 / 4))
+  } else {
+    return("Cannot take 4th root of negative number")
+  }
+}
+
+fourth_root(16)
+fourth_root(-1)
+# Error in if (x >= 0) { : the condition has length > 1
+#fourth_root(-1:1)
+```
+
+```{r}
+# ifelse can map over vectors
+ifelse(iris$Species == "versicolor", 5, 1)
+```
+

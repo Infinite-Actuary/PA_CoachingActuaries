@@ -1,0 +1,82 @@
+---
+title: "2.1.3_Intro_Univariate_Plots"
+output: html_document
+date: "2023-02-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Intro to ggplot2
+
+```{r}
+# https://socviz.co/makeplot.html#how-ggplot-works
+library(ggplot2)
+
+ggplot(iris, aes(x = Sepal.Width, y = Sepal.Length, color = Petal.Length, fill = Species)) + 
+  geom_point(size = 2) + 
+  geom_smooth(method = "lm", color = "black")
+```
+
+## Histogram
+```{r}
+
+ggplot(data = iris, # specify data
+       mapping = aes( # mapping aesthetic
+         x = Sepal.Length # x-axis variable
+         )
+       ) +
+  geom_histogram( # type of plot
+    bins = 20 # histogram bins
+      ) +
+  labs( # labels
+    x = "Iris Sepal Length" # x-axis label
+    )
+
+ggplot(data = iris, mapping = aes(x = Sepal.Length)) +
+  geom_histogram(bins = 20) +
+  labs(x = "Iris Sepal Length")
+
+ggplot(data = iris, mapping = aes(x = Sepal.Width)) +
+  geom_histogram(bins = 20) +
+  labs(x = "Iris Sepal Width")
+
+ggplot(data = iris, mapping = aes(x = Petal.Length)) +
+  geom_histogram(bins = 20) +
+  labs(x = "Iris Petal Length")
+
+ggplot(data = iris, mapping = aes(x = Petal.Width)) +
+  geom_histogram(bins = 20) +
+  labs(x = "Iris Petal Width")
+```
+
+## Bar Charts
+
+```{r}
+ggplot(data = iris, mapping = aes(x = Species)) +
+  geom_bar() + # bar chart
+  labs(x = "Iris Species")
+```
+
+# Box Plot
+```{r}
+ggplot(data = iris, mapping = aes(x = Sepal.Length)) +
+  geom_boxplot() +
+  labs(x = "Iris Sepal Length")
+
+# Sepal.Width has 4 outliers
+ggplot(data = iris, mapping = aes(x = Sepal.Width)) +
+  geom_boxplot() +
+  labs(x = "Iris Sepal Width")
+
+ggplot(data = iris, mapping = aes(x = Petal.Length)) +
+  geom_boxplot() +
+  labs(x = "Iris Petal Length")
+
+ggplot(data = iris, mapping = aes(x = Petal.Width)) +
+  geom_boxplot() +
+  labs(x = "Iris Petal Width")
+```
+

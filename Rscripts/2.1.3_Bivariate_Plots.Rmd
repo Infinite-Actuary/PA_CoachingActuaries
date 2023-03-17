@@ -1,0 +1,72 @@
+---
+title: "2.1.3_Bivariate_Plots"
+output: html_document
+date: "2023-02-27"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Bivariate Plots
+
+```{r}
+# Use Sepal.Length as the continuous target variable
+
+# by itself sepal width is not a good predictor
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Sepal.Length)) + # normally y is target variable
+  geom_point() +
+  labs(x = "Sepal.Width", y = "Sepal.Length")
+
+ggplot(data = iris, mapping = aes(x = Petal.Width, y = Sepal.Length)) + # normally y is target variable
+  geom_point() +
+  labs(x = "Petal.Width", y = "Sepal.Length")
+
+ggplot(data = iris, mapping = aes(x = Petal.Length, y = Sepal.Length)) + # normally y is target variable
+  geom_point() +
+  labs(x = "Petal.Length", y = "Sepal.Length")
+```
+
+```{r}
+# side-by-side histogram
+ggplot(data = iris, 
+       # color by Species
+       # y not specified for histograms
+       mapping = aes(x = Sepal.Length, fill = Species)) + 
+  geom_histogram(
+    position = "dodge", # interleaved bars
+    bins = 10
+    ) +
+  labs(x = "Sepal.Length")
+
+ggplot(data = iris, 
+       # color by Species
+       # y not specified for histograms
+       mapping = aes(x = Sepal.Length, color = Species)) + # color vs fill
+  geom_histogram(
+    position = "dodge", # interleaved bars
+    bins = 10
+    ) +
+  labs(x = "Sepal.Length")
+
+# species will likely do well at predicting sepal length
+```
+
+## side-by-side box plot when factor has 3 or more levels
+```{r}
+ggplot(data = iris, mapping = aes(x = Species, y = Sepal.Length)) +
+  geom_boxplot() +
+  labs(x = "Species", y = "Sepal.Length")
+
+# again we see species is a good candidate for predicting sepal length
+```
+
+
+## side-by-side barchart (examine counts or factors)
+```{r}
+ggplot(data = iris, mapping = aes(x = Species, fill = Species)) +
+  geom_bar(position = "dodge") + # or stack
+  labs(x = "Species")
+```
+
+

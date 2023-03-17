@@ -1,0 +1,31 @@
+---
+title: "1.2.1_Apply_Functions"
+output: html_document
+date: "2023-02-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Family of apply functions: apply, lapply, sapply and tapply
+
+```{r}
+# X: dataframe
+# MARGIN: 1 (row) or 2 (column)
+# FUN: function to apply
+
+# find the mean of numeric columns in the iris dataset
+apply(X = iris[, -5], MARGIN = 2, FUN = mean)
+
+# mean of numeric columns in iris dataset using dplyr
+require("dplyr") || install.packages("dplyr")
+apply(X = select_if(iris, is.numeric), MARGIN = 2, FUN = mean)
+
+# Species is a factor with three distinct levels
+head(iris$Species)
+
+# INDEX: a factor
+# iris dataset - get the median sepal width by species
+tapply(X = iris$Sepal.Width, INDEX = iris$Species, FUN = median)
+```

@@ -1,0 +1,31 @@
+---
+title: "2.1.3_Faceting_Multivariate_Plots"
+output: html_document
+date: "2023-02-28"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Multivariate plot (faceting)
+
+
+```{r}
+library(ggplot2)
+
+# using facet_wrap to create scatter plots by species
+# range of coordinate values is consistent (fixed) across the scatter plots
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Sepal.Length)) + # normally y is target variable
+  geom_point() +
+  labs(x = "Sepal.Width", y = "Sepal.Length") +
+  facet_wrap(~ Species)
+
+ggplot(data = iris, mapping = aes(x = Sepal.Width, y = Sepal.Length)) + # normally y is target variable
+  geom_point() +
+  labs(x = "Sepal.Width", y = "Sepal.Length") +
+  facet_wrap(~ Species, scales = "free")
+
+# faceting with two or more factors is more common (iris dataset only has one i.e. species)
+```
+

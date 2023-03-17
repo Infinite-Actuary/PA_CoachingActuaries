@@ -1,0 +1,57 @@
+---
+title: "3.1.3_Random_Generators_Seeds"
+output: html_document
+date: "2023-03-02"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Random Generators and Seeds
+```{r}
+# n points from a normal distribution
+rnorm(n = 5, mean = 0, sd = 1)
+```
+
+```{r}
+# this chuck will produce the same 5 random values every time it's ran
+# all values generated deterministically once the seeds is set
+# we set the seed to make results reproducible
+set.seed(161)
+rnorm(5)
+```
+
+## Partition iris dataset
+
+```{r}
+dim(iris) # rows = 150, cols = 5
+
+# generate random indices from createDataPartition
+library(caret)
+
+set.seed(161)
+ind <- createDataPartition(
+  iris$Sepal.Length, # stratify by
+  p = 0.5, # approximate proportion of data to partition
+  list = F # don't return data as a list
+  ) # matrix with one column
+
+p_approx <- length(ind) / length(iris$Sepal.Length)
+
+p_approx
+head(ind)
+
+# create training and test sets
+train <- iris[ind, ]
+test <- iris[-ind, ]
+
+head(train)
+head(test)
+
+# createDataPartition performs stratified splitting (i.e. a division resulting in similar groups)
+# will try to keep the sepal length similar in each group
+mean(train$Sepal.Length)
+mean(test$Sepal.Length)
+```
+

@@ -1,0 +1,51 @@
+---
+title: "1.2.1_Loops"
+output: html_document
+date: "2023-02-23"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Loops
+
+```{r}
+dim(iris)
+
+# iris dataset records 5 characteristics on 150 iris flowers
+head(iris)
+```
+
+Cumulative petal length
+```{r}
+# cumulative sum function
+cum_sum <- function(vector) {
+  cum_sum <- vector[1] # initialize
+  for (i in 2:length(vector)) {
+    val <- cum_sum[i - 1] + vector[i]
+    cum_sum <- c(cum_sum, val)
+  }
+  return(cum_sum)
+}
+
+cum_sum(iris$Petal.Length)
+
+# built-in cumsum function
+cumsum(iris$Petal.Length)
+```
+
+While loop
+```{r}
+# number of trials before the first failure where probability of success = p
+geom_trial <- function(p) {
+  i <- 1
+  while (runif(n = 1, min = 0, max = 1) < p) {
+    i <- i + 1
+  }
+  return(i)
+}
+
+geom_trial(p = 0.9)
+```
+

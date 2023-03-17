@@ -1,0 +1,31 @@
+---
+title: "2.1.2_Numerical_Exploration"
+output: html_document
+date: "2023-02-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Univariate analysis
+```{r}
+summary(iris) # Min, Q1, Median, Mean, Q3, Max
+table(iris$Species) # frequency of each variable in the dataset
+```
+
+# Bivariate analysis
+```{r}
+# Correlation
+cor(iris$Sepal.Length, iris$Sepal.Width)
+
+library(tidyverse)
+cor(iris %>% select_if(is.numeric)) # correlation of numeric variables
+
+# sepal length positively correlated to petal length and petal width
+# how to identify if species is a predictor worth using?
+
+# iris species has a visible influence on the sepal length
+iris %>% group_by(Species) %>% summarise(Mean = mean(Sepal.Length), Median = median(Sepal.Length), Freq = n())
+```
+

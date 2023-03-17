@@ -1,0 +1,23 @@
+---
+title: "1.2.2_Pipes"
+output: html_document
+date: "2023-02-24"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Pipes
+
+```{r}
+sd(apply(select(iris, -Species), MARGIN = 2, FUN = mean))
+sd(apply(select_if(iris, is.numeric), MARGIN = 2, FUN = mean))
+
+# select using tidyverse
+library(tidyverse) # similar to require(tidyverse) but doesn't output a boolean
+
+iris %>% summarise(across(where(is.numeric), mean)) %>% apply(MARGIN = 1, FUN = sd)
+iris %>% summarise(across(where(is.numeric), mean)) %>% rowwise() %>% mutate(std_dev = sd(.)) %>% getElement("std_dev")
+```
+
